@@ -1,4 +1,10 @@
 
+---
+title: HEXO Help
+date: 2025-02-22
+categories: [HEXO]  # 关键配置：将文章归类到 HEXO 分类
+---
+
 
 {% blockquote [author[, source]] [link] [source_link_title] %}
 content
