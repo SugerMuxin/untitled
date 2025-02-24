@@ -9,7 +9,7 @@ Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [docume
 
 ``` bash
 $ hexo new "My New Post"
-```
+```time
 
 More info: [Writing](https://hexo.io/docs/writing.html)
 
@@ -36,3 +36,5 @@ $ hexo deploy
 ```
 
 More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+
+![图片描述](/images/comfyuimanager.png)
