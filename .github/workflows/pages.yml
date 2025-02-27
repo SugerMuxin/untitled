@@ -3,34 +3,35 @@ name: Pages
 on:
   push:
     branches:
-      - master  # 确保这是你的默认分支名称（部分仓库可能使用 main）
+      - master  # 如果是 main 分支请修改
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # 更新到最新v4版本
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: recursive
 
-      - name: Setup Node.js 20.x
-        uses: actions/setup-node@v4  # 更新到最新v4版本
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          cache: npm  # 使用官方推荐的npm缓存方式
+          cache: npm  # 使用官方推荐的自动缓存
 
       - name: Install Dependencies
-        run: npm ci  # 更推荐使用ci命令保持依赖一致性
+        run: npm ci  # 严格根据 lock 文件安装
 
-      - name: Build
+      - name: Build Project
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # 这是专门为Pages设计的artifact上传
+      # 关键修复点：使用专用 Pages 上传器
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          path: ./public  # 确保这是你的构建输出目录
+          path: ./public  # 请确认实际构建目录
 
   deploy:
     needs: build
@@ -45,4 +46,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # 保持最新v2版本
+        uses: actions/deploy-pages@v2
